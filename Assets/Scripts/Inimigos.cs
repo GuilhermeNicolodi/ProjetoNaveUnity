@@ -5,14 +5,15 @@ using UnityEngine;
 
 public class Inimigos : MonoBehaviour
 {
-    
     public GameObject laserDoInimigo;
     public Transform localDoDisparo;
+    public GameObject itemParaDropar;
 
     public float velocideDoInimigo;
     public float tempoMaximoEntreOsLasers;
     public float tempoAtualDosLasers;
     public bool inimigoAtirador;
+    public int chanceParaDropar;
 
     public int vidaMaximaDoInimigo;
     public int vidaAtualDoInimigo;
@@ -58,6 +59,12 @@ public class Inimigos : MonoBehaviour
         if (vidaAtualDoInimigo <= 0)
         {
             GameManager.instance.AumentarPontuacao(pontosParaDar);
+            int numeroAleatorio = Random.Range(0 , 100);
+            if (numeroAleatorio <= chanceParaDropar)
+            {
+                Instantiate(itemParaDropar, transform.position, Quaternion.Euler(0f,0f,0f));
+            }
+
             Destroy(this.gameObject);
         }
     }
