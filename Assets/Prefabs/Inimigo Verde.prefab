@@ -149,7 +149,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 4
+  m_Constraints: 7
 --- !u!114 &1371787074696126113
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -165,14 +165,17 @@ MonoBehaviour:
   laserDoInimigo: {fileID: 863085674657359598, guid: b82493847d15fce4fae48368cfc775a1, type: 3}
   localDoDisparo: {fileID: 140626381575083387}
   itemParaDropar: {fileID: 1654323307655017873, guid: 0bed3e6d864539c4893386ad5ca31a8c, type: 3}
+  efeitoDeExplosao: {fileID: 1131523634340923933, guid: 78127756900c077469fd3804fe5613e5, type: 3}
   velocideDoInimigo: 8
   tempoMaximoEntreOsLasers: 0.5
   tempoAtualDosLasers: 0
-  inimigoAtirador: 1
   chanceParaDropar: 10
+  danoDaNave: 1
   vidaMaximaDoInimigo: 3
   vidaAtualDoInimigo: 0
   pontosParaDar: 15
+  inimigoAtirador: 1
+  inimigoAtivado: 0
 --- !u!1 &6303644296279820589
 GameObject:
   m_ObjectHideFlags: 0

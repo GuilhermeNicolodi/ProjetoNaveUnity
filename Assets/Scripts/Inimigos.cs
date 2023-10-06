@@ -8,20 +8,25 @@ public class Inimigos : MonoBehaviour
     public GameObject laserDoInimigo;
     public Transform localDoDisparo;
     public GameObject itemParaDropar;
+    public GameObject efeitoDeExplosao;
 
     public float velocideDoInimigo;
     public float tempoMaximoEntreOsLasers;
     public float tempoAtualDosLasers;
-    public bool inimigoAtirador;
     public int chanceParaDropar;
+    public int danoDaNave;
 
     public int vidaMaximaDoInimigo;
     public int vidaAtualDoInimigo;
     public int pontosParaDar;
 
+    public bool inimigoAtirador;
+    public bool inimigoAtivado;
+
     // Start is called before the first frame update
     void Start()
     {
+        inimigoAtivado = false;
         vidaAtualDoInimigo = vidaMaximaDoInimigo;
     }
 
@@ -30,13 +35,18 @@ public class Inimigos : MonoBehaviour
     {
         MovimentarInimigo();
 
-        if (inimigoAtirador == true)
+        if (inimigoAtirador == true && inimigoAtivado == true)
         {
             AtirarLaser();
         }
     }
 
-    private void MovimentarInimigo() 
+    public void AtivarInimigo()
+    {
+        inimigoAtivado = true;
+    }
+
+    private void MovimentarInimigo()
     {
         transform.Translate(Vector3.down * velocideDoInimigo * Time.deltaTime);
     }
@@ -52,19 +62,31 @@ public class Inimigos : MonoBehaviour
         }
     }
 
-    public void MachucarInimigo(int danoParaReceber) 
-    { 
+    public void MachucarInimigo(int danoParaReceber)
+    {
         vidaAtualDoInimigo -= danoParaReceber;
 
         if (vidaAtualDoInimigo <= 0)
         {
             GameManager.instance.AumentarPontuacao(pontosParaDar);
-            int numeroAleatorio = Random.Range(0 , 100);
+            Instantiate(efeitoDeExplosao, transform.position, transform.rotation);
+
+            int numeroAleatorio = Random.Range(0, 100);
             if (numeroAleatorio <= chanceParaDropar)
             {
-                Instantiate(itemParaDropar, transform.position, Quaternion.Euler(0f,0f,0f));
+                Instantiate(itemParaDropar, transform.position, Quaternion.Euler(0f, 0f, 0f));
             }
 
+            Destroy(this.gameObject);
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            collision.gameObject.GetComponent<VidaDoJogador>().MachucarJogador(danoDaNave);
+            Instantiate(efeitoDeExplosao, transform.position, transform.rotation);
             Destroy(this.gameObject);
         }
     }
