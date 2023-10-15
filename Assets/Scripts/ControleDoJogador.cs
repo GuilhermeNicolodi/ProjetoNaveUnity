@@ -59,8 +59,10 @@ public class ControleDoJogador : MonoBehaviour
             else 
             {
                 Instantiate(laserDoJogador, localDoDisparoDaEsquerda.position, localDoDisparoDaEsquerda.rotation);
-                Instantiate(laserDoJogador, localDoDisparoDaDireita.position, localDoDisparoDaDireita.rotation);
+                Instantiate(laserDoJogador, localDoDisparoDaDireita.position, localDoDisparoDaDireita.rotation);  
             }
+
+            EfeitosSonoros.instance.somDoLaserDoJogador.Play();
         }
     }
 

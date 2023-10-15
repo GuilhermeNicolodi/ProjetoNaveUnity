@@ -70,6 +70,7 @@ public class Inimigos : MonoBehaviour
         {
             GameManager.instance.AumentarPontuacao(pontosParaDar);
             Instantiate(efeitoDeExplosao, transform.position, transform.rotation);
+            EfeitosSonoros.instance.somDaExplosao.Play();
 
             int numeroAleatorio = Random.Range(0, 100);
             if (numeroAleatorio <= chanceParaDropar)
@@ -87,6 +88,8 @@ public class Inimigos : MonoBehaviour
         {
             collision.gameObject.GetComponent<VidaDoJogador>().MachucarJogador(danoDaNave);
             Instantiate(efeitoDeExplosao, transform.position, transform.rotation);
+            EfeitosSonoros.instance.somDaExplosao.Play();
+
             Destroy(this.gameObject);
         }
     }

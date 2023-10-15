@@ -31,8 +31,8 @@ public class LaserDoJogador : MonoBehaviour
         if (collision.gameObject.CompareTag("Inimigo"))
         {
             collision.gameObject.GetComponent<Inimigos>().MachucarInimigo(danoParaDar);
-
             Instantiate(impactoDoLaserDoJogador, transform.position, transform.rotation);
+            EfeitosSonoros.instance.somDeImpacto.Play();
 
             Destroy(this.gameObject);
         }
