@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -7,8 +8,15 @@ public class GameManager : MonoBehaviour
 {
 
     public static GameManager instance;
+    public AudioSource musicaDoJogo;
+    public AudioSource musicaDeGameOver;
+
     public Text textoDePontuacaoAtual;
     public int pontuacaoAtual;
+
+    public GameObject painelDeGameOver;
+    public Text textoDePontuacaoFinal;
+    public Text textoDeHighScore;
     
 
     void Awake()
@@ -19,6 +27,9 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Time.timeScale = 1f;
+        musicaDoJogo.Play();
+
         pontuacaoAtual = 0;
         textoDePontuacaoAtual.text = "PONTUAÇÃO: " + pontuacaoAtual;
     }
@@ -33,5 +44,22 @@ public class GameManager : MonoBehaviour
     {
         pontuacaoAtual += pontosParaGanhar;
         textoDePontuacaoAtual.text = "PONTUAÇÃO: " + pontuacaoAtual;
+    }
+
+    public void GameOver() 
+    {
+        Time.timeScale = 0f;
+        musicaDoJogo.Stop();
+        musicaDeGameOver.Play();
+
+        painelDeGameOver.SetActive(true);
+        textoDePontuacaoFinal.text = "PONTUAÇÃO: " + pontuacaoAtual;
+
+        if (pontuacaoAtual > PlayerPrefs.GetInt("HighScore"))
+        {
+            PlayerPrefs.SetInt("HighScore", pontuacaoAtual);
+        }
+
+        textoDeHighScore.text = "HIGHSCORE: " + PlayerPrefs.GetInt("HighScore");
     }
 }

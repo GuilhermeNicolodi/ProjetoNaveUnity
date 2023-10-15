@@ -71,6 +71,7 @@ public class VidaDoJogador : MonoBehaviour
 
             if (vidaAtualDoJogador <= 0)
             {
+                GameManager.instance.GameOver();
                 Debug.Log("Game Over");
             }
         } 

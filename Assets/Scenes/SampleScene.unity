@@ -1098,7 +1098,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 7660b2b2bfd3d17478676aa325ab617c, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.4
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -2411,8 +2411,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0375ffa0eb5c1a243b876b31d9e1940f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  musicaDoJogo: {fileID: 171264642}
+  musicaDeGameOver: {fileID: 476077363}
   textoDePontuacaoAtual: {fileID: 977991137}
   pontuacaoAtual: 0
+  painelDeGameOver: {fileID: 1212931935}
+  textoDePontuacaoFinal: {fileID: 427426437}
+  textoDeHighScore: {fileID: 1186888076}
 --- !u!4 &1137189186
 Transform:
   m_ObjectHideFlags: 0
